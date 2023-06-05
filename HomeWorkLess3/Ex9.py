@@ -5,5 +5,7 @@ Scrieți un program care primește o propoziție ca intrare (din consola) și
 """
 
 propozitie = input("Scrie o propozitie ")
-excluded_character = propozitie.replace(",.?!"," ")
-print(f"Propozitie fara caractere {excluded_character}")
+excluded_characters = ",.?!"
+for char in excluded_characters:
+    propozitie = propozitie.replace(char, "")
+print(f"Propozitie fara caractere {propozitie}")
