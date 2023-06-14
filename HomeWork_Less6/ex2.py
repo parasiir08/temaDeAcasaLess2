@@ -9,26 +9,34 @@ Combină soluția cu soluția din lecția live
 și permite utilizatorului să decidă ce conversie să facă.
 De la 24 de ore la 12 ore, sau invers.
 '''
-user_time_pref = int(input("In care format doresti sa fie afisat timpul: 12 sau in 24 ore ? "))
+timp_input = input("Introduceți timpul în formatul HH:MM AM/PM: ")
 
-if user_time_pref == 12:
-    timpul = input("Introdu timpul in formatul 12h: ")
-    ore_minute = timpul.split(":")
-    ore, minute = int(ore_minute[0]), int(ore_minute[1])
-    if ore <= 11 and minute <= 59:
-        print(f" Timpul este {ore}:{minute} AM")
-    elif ore == 00 and minute <=59:
-        print(f"Timpul este {ore}:{minute} AM")
-    elif ore >= 12 and minute <= 59:
-        print(f" Timpul este {ore}:{minute} PM")
+if ":" not in timp_input or "AM" not in timp_input and "PM" not in timp_input:
+    print("Formatul timpului introdus este invalid.")
+else:
+    format_24_ore = True if input("Doriți conversia în formatul de 24 de ore? (Da/Nu): ").lower() == "da" else False
 
-if user_time_pref == 24:
-    timpul = input("Introdu timpul in formatatul 24h: ")
-    ore_minute = timpul.split(":")
-    ore, minute = int(ore_minute[0]), int(ore_minute[1])
-    if ore < 24 and minute <= 59:
-        print(f" Timpul este {ore}:{minute}")
+    ore_minute, perioada = timp_input.split()
+    ore, minute = map(int, ore_minute.split(":"))
 
+    if format_24_ore:
+        if perioada == "PM" and ore != 12:
+            ore += 12
+        elif perioada == "AM" and ore == 12:
+            ore = 0
 
+        timp_24_ore = f"{ore:02d}:{minute:02d}"
+        print("Timpul convertit în formatul de 24 de ore:", timp_24_ore)
+    else:
+        if ore >= 12:
+            perioada = "PM"
+            if ore > 12:
+                ore -= 12
+        elif ore == 0:
+            ore = 12
+            perioada = "AM"
+        else:
+            perioada = "AM"
 
-#print(f"Ai introdus acest timp {ore}:{minute}")
+        timp_12_ore = f"{ore:02d}:{minute:02d} {perioada}"
+        print("Timpul convertit în formatul de 12 ore:", timp_12_ore)
