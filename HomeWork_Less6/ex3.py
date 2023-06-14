@@ -9,14 +9,11 @@ import random
 all_letters = list(string.ascii_letters)
 all_symbols = list(string.punctuation)
 all_numbers = list(string.digits)
+password = all_letters + all_symbols + all_numbers
 pass_length = int(input('Pass length'))
 
-password = ''
+password1 = ''
 for a in range(pass_length):
-    letter_index = random.randrange(0, len(all_letters))
-    all_numbers1 = random.randrange(0, len(all_numbers))
-    rand_symbols = random.randrange(0, len(all_symbols))
-
-    password += all_letters[letter_index] + all_symbols[rand_symbols] + all_numbers[all_numbers1]
-
-    print(password)
+    letter_index = random.randrange(0, len(password))
+    password1 += password[letter_index]
+print(f" Parola este {password1}")
