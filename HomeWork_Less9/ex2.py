@@ -5659,7 +5659,7 @@ subscribe to our email newsletter to hear about new eBooks.
 
 liste_ori = []
 
-for number in lista_cuvinte1:
-    print(f"Cuvintul {number} se repeta de {lista_cuvinte1.count((number))}")
-    if lista_cuvinte1.count(number) >= 50:
+for number in set(lista_cuvinte1.split()):
+    print(f"Cuvintul {number} se repeta de {lista_cuvinte1.count(number)}")
+    if lista_cuvinte1.count(number) >= 150:
         print(f"Top cuvinte sunt {number}")
