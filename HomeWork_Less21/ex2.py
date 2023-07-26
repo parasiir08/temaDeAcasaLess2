@@ -29,21 +29,24 @@ class HumanWithPet:
         pets_str = "\n".join([pet.reprezentare_pet() for pet in self.pets])
         return f"{self.nume_complet()}, vârsta {self.varsta()}, cu animalele de companie:\n{pets_str}"
 
+    def adaugare_pets(self):
+        pets = []
+        for i in range(nr_animale):
+            tip = input(f"Introduceți tipul animalului {i + 1}: ")
+            nume1 = input(f"Introduceți numele animalului {i + 1}: ")
+            mincare_preferata = input(f"Introduceți mincarea preferată a animalului {i + 1}: ")
+            pet = Pet(nume1, tip, mincare_preferata)
+            pets.append(pet)
+
 if __name__ == "__main__":
     nume2 = input("Introdu numele persoanei: ")
     prenume = input("Introdu prenumele persoanei: ")
     data_nasterii_str = input("Introduceți data nașterii în formatul YYYY-MM-DD: ")
     data_nasterii_marius = datetime.datetime.strptime(data_nasterii_str, "%Y-%m-%d").date()
-
-    pets = []
     nr_animale = int(input("Introduceți numărul de animale de companie pe care le aveți: "))
 
-    for i in range(nr_animale):
-        tip = input(f"Introduceți tipul animalului {i + 1}: ")
-        nume1 = input(f"Introduceți numele animalului {i + 1}: ")
-        mincare_preferata = input(f"Introduceți mincarea preferată a animalului {i + 1}: ")
-        pet = Pet(nume1, tip, mincare_preferata)
-        pets.append(pet)
 
-    hwp = HumanWithPet(nume2, prenume, data_nasterii_marius, pets)
+
+    hwp = HumanWithPet(nume2, prenume, data_nasterii_marius, adaugare_pets.pets)
     print(hwp)
+
