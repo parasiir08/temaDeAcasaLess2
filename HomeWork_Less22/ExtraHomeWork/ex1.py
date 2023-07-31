@@ -57,7 +57,7 @@ def test_bank_account():
     assert bank_account.get_balance() == balance + 500 - 200
 
     # Test withdraw() with insufficient balance
-    bank_account.withdraw(6000)
+    bank_account.withdraw(5500)
     assert bank_account.get_balance() == balance  # Balance should remain unchanged
 
     # Test deposit() with negative amount
